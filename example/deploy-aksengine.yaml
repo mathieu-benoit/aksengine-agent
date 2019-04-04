@@ -15,9 +15,11 @@ pr: none
 
 variables:
   location: eastus
-  # define 5 more variables: resourceGroupName, clientId, clientSecret, subscriptionId and tenantId in the build pipeline in UI
+  apiModel: kubernetes.json
+  # define 4 more variables: subscriptionId, clientId, clientSecret and dnsPrefix in the build pipeline in UI
 
 steps:
 - script: |
     aks-engine version
+    aks-engine deploy -s $(subscriptionId) --client-id '$(clientId)' --client-secret '$(clientSecret)' --dns-prefix $(dnsPrefix) -l $(location) --api-model $(apiModel)
   displayName: 'aks-engine deploy'
