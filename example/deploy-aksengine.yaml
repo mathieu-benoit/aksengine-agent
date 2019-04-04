@@ -1,0 +1,23 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+container: mabenoit/azuredevops-aksengine-agent:latest
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - example/
+pr: none
+
+variables:
+  location: eastus
+  # define 5 more variables: resourceGroupName, clientId, clientSecret, subscriptionId and tenantId in the build pipeline in UI
+
+steps:
+- script: |
+    aks-engine version
+  displayName: 'Terraform init and apply'
