@@ -20,7 +20,7 @@ pr:
     - README.md
 
 variables:
-  imageName: 'azuredevops-aksengine-agent'
+  imageName: 'aksengine-agent'
   aksEngineVersion: 0.33.4
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
 
