@@ -20,4 +20,4 @@ variables:
 steps:
 - script: |
     aks-engine version
-  displayName: 'Terraform init and apply'
+  displayName: 'aks-engine deploy'
