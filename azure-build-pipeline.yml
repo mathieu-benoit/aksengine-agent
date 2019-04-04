@@ -1,0 +1,39 @@
+pool:
+  vmImage: 'Ubuntu 16.04'
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - example/
+    - README.md
+pr:
+  branches:
+    include:
+    - refs/heads/*
+  paths:
+    exclude:
+    - example/
+    - README.md
+
+variables:
+  imageName: 'azuredevops-aksengine-agent'
+  aksEngineVersion: 0.33.3
+  # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
+
+steps:
+- bash: docker build -f $(system.defaultWorkingDirectory)/Dockerfile -t $(registryName)/$(imageName):$(aksEngineVersion) -t $(registryName)/$(imageName):latest --build-arg AKSENGINE_VERSION=$(aksEngineVersion) $(system.defaultWorkingDirectory)
+  displayName: 'docker build'
+
+- bash: docker login -u $(registryLogin) -p $(registryPassword)
+  displayName: 'docker login'
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+
+- bash: |
+    docker push $(registryName)/$(imageName):$(aksEngineVersion)
+    docker push $(registryName)/$(imageName):latest
+  displayName: 'docker push'
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
