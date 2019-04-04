@@ -24,3 +24,7 @@ steps:
     cd $(system.defaultWorkingDirectory)/example
     aks-engine deploy -s $(subscriptionId) --client-id '$(clientId)' --client-secret '$(clientSecret)' --dns-prefix $(dnsPrefix) -l $(location) --api-model $(apiModel)
   displayName: 'aks-engine deploy'
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifacts: drop'
+  inputs:
+    PathtoPublish: '$(system.defaultWorkingDirectory)/example/_output'
