@@ -1,7 +1,7 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
-container: mabenoit/azuredevops-aksengine-agent:latest
+container: mabenoit/aksengine-agent:latest
 
 trigger:
   batch: true
