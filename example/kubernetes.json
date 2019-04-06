@@ -12,7 +12,7 @@
     },
     "agentPoolProfiles": [
       {
-        "name": "agentpool1",
+        "name": "linuxpool",
         "count": 1,
         "vmSize": "Standard_D2_v2"
       }
