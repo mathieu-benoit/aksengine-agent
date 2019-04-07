@@ -15,7 +15,7 @@ pr: none
 
 variables:
   location: eastus
-  apiModel: kubernetes.json
+  apiModel: kubernetes-win.json
   # define 4 more variables: subscriptionId, clientId, clientSecret and dnsPrefix in the build pipeline in UI
 
 steps:

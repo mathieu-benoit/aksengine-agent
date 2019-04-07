@@ -8,15 +8,21 @@
     "masterProfile": {
       "count": 1,
       "dnsPrefix": "",
-      "vmSize": "Standard_D2_v2"
+      "vmSize": "Standard_D2_v3"
     },
     "agentPoolProfiles": [
       {
-        "name": "linuxpool",
+        "name": "windowspool",
         "count": 1,
-        "vmSize": "Standard_D2_v2"
+        "vmSize": "Standard_D2_v3",
+        "osType": "Windows",
+        "osDiskSizeGB": 128
       }
     ],
+    "windowsProfile": {
+      "adminUsername": "azureuser",
+      "adminPassword": "replacepassword1234$"
+    },
     "linuxProfile": {
       "adminUsername": "azureuser",
       "ssh": {
