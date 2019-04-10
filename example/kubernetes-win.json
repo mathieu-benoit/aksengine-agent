@@ -15,6 +15,7 @@
         "name": "windowspool",
         "count": 1,
         "vmSize": "Standard_D2_v3",
+        "availabilityProfile": "AvailabilitySet",
         "osType": "Windows",
         "osDiskSizeGB": 128
       }
