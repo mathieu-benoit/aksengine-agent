@@ -21,7 +21,7 @@ pr:
 
 variables:
   imageName: 'aksengine-agent'
-  aksEngineVersion: 0.34.3
+  aksEngineVersion: 0.35.0
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
 
 steps:
