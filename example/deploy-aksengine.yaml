@@ -20,6 +20,7 @@ variables:
 
 steps:
 - script: |
+    aks-engine version
     cd $(system.defaultWorkingDirectory)/example
     aks-engine deploy -s $(subscriptionId) --client-id '$(clientId)' --client-secret '$(clientSecret)' --dns-prefix $(dnsPrefix) -l $(location) --api-model $(apiModel)
   displayName: 'aks-engine deploy'
