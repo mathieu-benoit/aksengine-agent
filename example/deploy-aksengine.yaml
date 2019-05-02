@@ -11,7 +11,13 @@ trigger:
   paths:
     include:
     - example/
-pr: none
+pr:
+  branches:
+    include:
+    - refs/heads/*
+  paths:
+    include:
+    - example/
 
 variables:
   location: eastus
@@ -19,12 +25,15 @@ variables:
   # define 4 more variables: subscriptionId, clientId, clientSecret and dnsPrefix in the build pipeline in UI
 
 steps:
-- script: |
-    aks-engine version
+- bash: aks-engine version    
+  displayName: 'aks-engine version'
+- bash: |
     cd $(system.defaultWorkingDirectory)/example
     aks-engine deploy -s $(subscriptionId) --client-id '$(clientId)' --client-secret '$(clientSecret)' --dns-prefix $(dnsPrefix) -l $(location) --api-model $(apiModel)
   displayName: 'aks-engine deploy'
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts: drop'
   inputs:
     PathtoPublish: '$(system.defaultWorkingDirectory)/example/_output'
+  condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
