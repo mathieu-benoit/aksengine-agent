@@ -13,4 +13,4 @@ RUN tar xvzf /tmp/aks-engine.tgz \
  && rm -r aks-engine-v${AKSENGINE_VERSION}-linux-amd64
 
 ENTRYPOINT ["aks-engine"]
-CMD ["--version"]
+CMD ["version"]
