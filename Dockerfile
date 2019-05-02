@@ -1,13 +1,13 @@
-FROM alpine:3.9
+FROM ubuntu:18.04
 
 ARG AKSENGINE_VERSION=0.35.0
 
-# The Docker image is missing TLS root certificates, and as a result the aks-engine commands fail on TLS when connecting to Azure services via HTTPS.
-RUN apk add --no-cache -u ca-certificates
+RUN apt-get update \
+ && apt-get install -y wget unzip \
+ && rm -rf /var/lib/apt/lists/*
 
-ADD "https://github.com/Azure/aks-engine/releases/download/v${AKSENGINE_VERSION}/aks-engine-v${AKSENGINE_VERSION}-linux-amd64.tar.gz" /tmp/aks-engine.tgz
-
-RUN tar xvzf /tmp/aks-engine.tgz \
- && rm /tmp/aks-engine.tgz \
+RUN wget https://github.com/Azure/aks-engine/releases/download/v${AKSENGINE_VERSION}/aks-engine-v${AKSENGINE_VERSION}-linux-amd64.zip \
+ &&	unzip aks-engine-v${AKSENGINE_VERSION}-linux-amd64.zip \
  && mv aks-engine-v${AKSENGINE_VERSION}-linux-amd64/aks-engine /usr/local/bin/aks-engine \
+ && rm aks-engine-v${AKSENGINE_VERSION}-linux-amd64.zip \
  && rm -r aks-engine-v${AKSENGINE_VERSION}-linux-amd64
