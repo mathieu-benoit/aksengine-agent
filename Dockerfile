@@ -11,6 +11,3 @@ RUN tar xvzf /tmp/aks-engine.tgz \
  && rm /tmp/aks-engine.tgz \
  && mv aks-engine-v${AKSENGINE_VERSION}-linux-amd64/aks-engine /usr/local/bin/aks-engine \
  && rm -r aks-engine-v${AKSENGINE_VERSION}-linux-amd64
-
-ENTRYPOINT ["aks-engine"]
-CMD ["version"]
