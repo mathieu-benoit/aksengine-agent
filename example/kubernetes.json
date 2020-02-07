@@ -3,7 +3,7 @@
   "properties": {
     "orchestratorProfile": {
       "orchestratorType": "Kubernetes",
-      "orchestratorRelease": "1.14"
+      "orchestratorRelease": "1.15"
     },
     "masterProfile": {
       "count": 1,
@@ -14,6 +14,7 @@
       {
         "name": "linuxpool",
         "count": 1,
+        "availabilityProfile": "VirtualMachineScaleSets",
         "vmSize": "Standard_D2_v2"
       }
     ],
