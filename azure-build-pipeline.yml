@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'ubuntu-18.04'
 
 trigger:
   batch: true
@@ -21,7 +21,7 @@ pr:
 
 variables:
   imageName: 'aksengine-agent'
-  aksEngineVersion: 0.36.5
+  aksEngineVersion: 0.46.3
   # define 3 more variables: registryName, registryLogin and registryPassword in the build pipeline in UI
 
 steps:
